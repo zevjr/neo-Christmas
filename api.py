@@ -5,13 +5,18 @@ from server.run import TextGenerator
 app = Flask(__name__)
 
 
+@app.route("/")
+def menu():
+    return render_template('index.html')
+
+
 @app.route("/bibleGen")
-def hello():
+def bible_gen():
     wc = TextGenerator()
     context = {
         'Novo Evangelho': wc.get_text()
     }
-    return render_template('index.html', context=context)
+    return render_template('bible.html', context=context)
 
 
 if __name__ == "__main__":

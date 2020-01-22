@@ -1,9 +1,8 @@
 import numpy as np
 import tensorflow as tf
 import pandas as pd
-from threading import Thread
 from googletrans import Translator
-from keras.models import Sequential, load_model
+from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
@@ -19,7 +18,7 @@ class BibleGen:
 
     def run(self):
 
-        text = (open("../db/bible2.txt").read())
+        text = (open("db/bible2.txt").read())
         text = text.lower()
 
         characters = sorted(list(set(text)))
@@ -29,7 +28,7 @@ class BibleGen:
         X = []
         Y = []
         length = len(text)
-        seq_length = 100
+        seq_length = 200
         for i in range(0, length - seq_length, 1):
             sequence = text[i:i + seq_length]
             label = text[i + seq_length]
@@ -51,19 +50,18 @@ class BibleGen:
         # model.fit(X_modified, Y_modified, epochs=10, batch_size=50)
         # model.save_weights('../db/text_generator_10.h5')
 
-        model.load_weights('../db/text_generator_10.h5')
+        model.load_weights('db/text_generator_10.h5')
 
         string_mapped = X[self.generator]
         full_string = [n_to_char[value] for value in string_mapped]
+
         # generating characters
         for i in range(seq_length):
             x = np.reshape(string_mapped, (1, len(string_mapped), 1))
             x = x / float(len(characters))
             pred_index = np.argmax(model.predict(x, verbose=0))
-            seq = [n_to_char[value] for value in string_mapped]
             string_mapped.append(pred_index)
             string_mapped = string_mapped[1:len(string_mapped)]
-
         txt = ""
         for char in full_string:
             txt = txt + char
