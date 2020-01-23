@@ -98,3 +98,5 @@ model.fit(x, y,
           epochs=60,
           callbacks=[print_callback])
 model.save_weights('../db/nietzsche_60.h5')
+
+# model.load_weights('../db/nietzsche_60.h5', callbacks=[print_callback])
