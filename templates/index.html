@@ -89,6 +89,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3>Enviar um arquivo de audio</h3>
+                <form method="post" action="/send_audio_file">
+                  <label>Select files:</label>
+                  <input type="file" id="file" name="file" multiple onchange="transcribe_audio_to_text"><br><br>
+                  <input type="submit">
+                </form>
+        </div>
+    </div>
 </div>
 </body>
 <script src="https://kit.fontawesome.com/94a6df62f5.js" crossorigin="anonymous"></script>
