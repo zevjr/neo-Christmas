@@ -49,12 +49,7 @@ def brain_text_gen():
     return render_template('brain_text.html', context=context2)
 
 
-@app.route("/send_audio_file", methods=['POST'])
-def transcribe_audio_to_text():
-    content = SpeechToText().run(request.files['file'])
-    return render_template("transcript.html", content=content)
-
-# app.add_url_rule('/send_audio_file', methods=['POST'], view_func=transcribe_audio_to_text)
+app.add_url_rule('/send_audio_file', methods=['POST'], view_func=transcribe_audio_to_text)
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=False, host='0.0.0.0', port=5000)
