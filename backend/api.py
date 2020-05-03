@@ -22,14 +22,14 @@ def bible_gen():
     return render_template('bible.html', context=context)
 
 
-@app.route("/businessGen", methods=['POST', 'GET'])
-def business_gen():
-    for key, value in request.form.items():
-        wc = BusinessGen(value)
-        context = {
-            f'Pesquisa Sobre {value}': wc.run()
-        }
-    return render_template('business.html', context=context)
+# @app.route("/businessGen", methods=['POST', 'GET'])
+# def business_gen():
+#     for key, value in request.form.items():
+#         wc = BusinessGen(value)
+#         context = {
+#             f'Pesquisa Sobre {value}': wc.run()
+#         }
+#     return render_template('business.html', context=context)
 
 
 @app.route("/brainGen", methods=['POST', 'GET'])
