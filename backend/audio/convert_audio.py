@@ -1,5 +1,5 @@
 import requests
-from backend.helpers.enviroment import API_KEY, AWS_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
+from helpers.enviroment import API_KEY, AWS_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
 
 
 class ConvertAudio:

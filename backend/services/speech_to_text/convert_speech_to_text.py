@@ -3,8 +3,8 @@ import random
 import time
 import boto3
 
-from backend.audio.convert_audio import ConvertAudio
-from backend.services.awsocr.aws_connect import AwsConnect
+from audio.convert_audio import ConvertAudio
+from services.awsocr.aws_connect import AwsConnect
 
 
 class SpeechToText(AwsConnect):
