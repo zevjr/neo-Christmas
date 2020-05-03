@@ -12,41 +12,41 @@ CORS(app)
 def menu():
     return render_template('index.html')
 
-
-@app.route("/bibleGen")
-def bible_gen():
-    wc = TextGenerator()
-    context = {
-        'Novo Evangelho': wc.get_text()
-    }
-    return render_template('bible.html', context=context)
-
-
-# @app.route("/businessGen", methods=['POST', 'GET'])
-# def business_gen():
+#
+# @app.route("/bibleGen")
+# def bible_gen():
+#     wc = TextGenerator()
+#     context = {
+#         'Novo Evangelho': wc.get_text()
+#     }
+#     return render_template('bible.html', context=context)
+#
+#
+# # @app.route("/businessGen", methods=['POST', 'GET'])
+# # def business_gen():
+# #     for key, value in request.form.items():
+# #         wc = BusinessGen(value)
+# #         context = {
+# #             f'Pesquisa Sobre {value}': wc.run()
+# #         }
+# #     return render_template('business.html', context=context)
+#
+#
+# @app.route("/brainGen", methods=['POST', 'GET'])
+# def brain_gen():
 #     for key, value in request.form.items():
-#         wc = BusinessGen(value)
 #         context = {
-#             f'Pesquisa Sobre {value}': wc.run()
+#             f'Pesquisa Sobre ': {value}
 #         }
-#     return render_template('business.html', context=context)
-
-
-@app.route("/brainGen", methods=['POST', 'GET'])
-def brain_gen():
-    for key, value in request.form.items():
-        context = {
-            f'Pesquisa Sobre ': {value}
-        }
-    return render_template('brain.html', context=context)
-
-
-@app.route("/brainGenText", methods=['POST', 'GET'])
-def brain_text_gen():
-    context2 = ''
-    for key, value in request.form.items():
-        context2 = [value, value, value]
-    return render_template('brain_text.html', context=context2)
+#     return render_template('brain.html', context=context)
+#
+#
+# @app.route("/brainGenText", methods=['POST', 'GET'])
+# def brain_text_gen():
+#     context2 = ''
+#     for key, value in request.form.items():
+#         context2 = [value, value, value]
+#     return render_template('brain_text.html', context=context2)
 
 
 app.add_url_rule('/send_audio_file', methods=['POST'], view_func=transcribe_audio_to_text)
