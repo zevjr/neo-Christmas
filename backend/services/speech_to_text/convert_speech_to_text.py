@@ -1,9 +1,10 @@
 import requests
-
-from audio.convert_audio import ConvertAudio
-from services.awsocr.aws_connect import AwsConnect
+import random
 import time
 import boto3
+
+from backend.audio.convert_audio import ConvertAudio
+from backend.services.awsocr.aws_connect import AwsConnect
 
 
 class SpeechToText(AwsConnect):
@@ -17,13 +18,20 @@ class SpeechToText(AwsConnect):
         filename_out = self.file.filename.split(".")[0]+"."+self.file_out
         self.job_uri = f"https://speechtotextuniversity.s3.amazonaws.com/{filename_out}"
         self.job_name, self.media = self.file.filename.split(".")
-        if self.upload_file(self.file) and self.file_out in self.media:
-            return self.start_converting()
-        else:
-            resp = ConvertAudio(file.filename.split(".")[0], self.media, self.file_out).run()
-            if "id" in resp.keys():
-                print(f"Arquivo convertido com sucesso de {self.media} para {self.file_out}")
-            return self.start_converting()
+        self.job_name = self.job_name + str(random.randrange(111111111, 999999999999))
+        try:
+            if self.upload_file(self.file) and self.file_out in self.media:
+                return self.start_converting()
+            else:
+                resp = ConvertAudio(file.filename.split(".")[0], self.media, self.file_out).run()
+                if "id" in resp.keys():
+                    print(f"Arquivo convertido com sucesso de {self.media} para {self.file_out}")
+                return self.start_converting()
+        except Exception as e:
+            print(e)
+        finally:
+            print([filename_out, self.file.filename])
+            self.delete_object_s3([filename_out, self.file.filename])
 
     def start_converting(self):
         response = self.convert_speech_to_text()

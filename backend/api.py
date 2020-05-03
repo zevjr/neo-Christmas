@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, session
-
-from server.run import TextGenerator
-from services.business_gen import BusinessGen
-from services.speech_to_text.convert_speech_to_text import SpeechToText
-from view.api_view import transcribe_audio_to_text
+from flask import Flask, render_template, request
+from flask_cors import CORS
+from backend.server.run import TextGenerator
+from backend.services.business_gen import BusinessGen
+from backend.view.api_view import transcribe_audio_to_text
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/")

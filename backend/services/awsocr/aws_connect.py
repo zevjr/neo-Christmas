@@ -1,8 +1,8 @@
 import logging
 import boto3
 
-from helpers.enum_aws_connect import EnumAwsConnect as const
-from helpers.enviroment import AWS_BUCKET, SNS_TOPIC_ARN, ROLE_ARN
+from backend.helpers.enum_aws_connect import EnumAwsConnect as const
+from backend.helpers.enviroment import AWS_BUCKET, SNS_TOPIC_ARN
 from botocore.exceptions import ClientError
 
 
@@ -22,7 +22,7 @@ class AwsConnect:
                 }
             },
             FeatureTypes=['FORMS'],
-            ClientRequestToken="NKEY"+self.doc_name.split('.')[0],
+            ClientRequestToken="NKEY" + self.doc_name.split('.')[0],
             NotificationChannel={
                 "SNSTopicArn": SNS_TOPIC_ARN,
                 "RoleArn": ROLE_ARN
@@ -54,6 +54,11 @@ class AwsConnect:
             return False
         return True
 
-    def delete_object_s3(self):
+    def delete_object_s3(self, doc_name=None):
+        for i in doc_name:
+            self.del_object(i)
+
+    @staticmethod
+    def del_object(doc_name):
         s3 = boto3.resource(const.BUCKET_S3.value)
-        s3.Object(AWS_BUCKET, self.doc_name).delete()
+        s3.Object(AWS_BUCKET, doc_name).delete()

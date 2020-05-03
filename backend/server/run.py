@@ -1,6 +1,6 @@
 import random
 
-from services.bible_gen import BibleGen
+from backend.services.bible_gen import BibleGen
 
 
 class TextGenerator:
