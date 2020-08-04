@@ -1,8 +1,8 @@
 import logging
 import boto3
 
-from helpers.enum_aws_connect import EnumAwsConnect as const
-from helpers.enviroment import AWS_BUCKET, SNS_TOPIC_ARN
+from backend.helpers.enum_aws_connect import EnumAwsConnect as const
+from backend.helpers.enviroment import AWS_BUCKET, SNS_TOPIC_ARN, ROLE_ARN
 from botocore.exceptions import ClientError
 
 

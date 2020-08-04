@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
-from view.api_view import transcribe_audio_to_text
+
+from backend.view.api_view import transcribe_audio_to_text
 
 app = Flask(__name__)
 CORS(app)

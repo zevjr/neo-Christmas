@@ -3,8 +3,8 @@ import random
 import time
 import boto3
 
-from audio.convert_audio import ConvertAudio
-from services.awsocr.aws_connect import AwsConnect
+from backend.audio.convert_audio import ConvertAudio
+from backend.services.awsocr.aws_connect import AwsConnect
 
 
 class SpeechToText(AwsConnect):
@@ -30,7 +30,6 @@ class SpeechToText(AwsConnect):
         except Exception as e:
             print(e)
         finally:
-            print([filename_out, self.file.filename])
             self.delete_object_s3([filename_out, self.file.filename])
 
     def start_converting(self):

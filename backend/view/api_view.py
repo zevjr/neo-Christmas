@@ -1,7 +1,7 @@
 import time
 from flask import jsonify, request
 
-from services.speech_to_text.convert_speech_to_text import SpeechToText
+from backend.services.speech_to_text.convert_speech_to_text import SpeechToText
 
 
 def transcribe_audio_to_text():
