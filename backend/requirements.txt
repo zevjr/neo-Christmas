@@ -22,7 +22,7 @@ cycler==0.10.0
 defusedxml==0.6.0
 docutils==0.15.2
 Flask==1.1.2
-flower==0.9.3
+flower==1.2.0
 gast==0.3.3
 google-auth==1.10.0
 google-auth-oauthlib==0.4.1
